@@ -120,7 +120,7 @@ const products = useMemo(() => {
   // ✅ LOAD WISHLIST FROM BACKEND
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:8080/wishlist/${user.email}`)
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/wishlist/${user.email}`)
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -134,7 +134,7 @@ const products = useMemo(() => {
   // ✅ LOAD ADDRESSES FROM BACKEND
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:8080/address/${encodeURIComponent(user.email)}`)
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/address/${encodeURIComponent(user.email)}`)
       .then(r => r.json())
       .then(data => { if (Array.isArray(data)) setSavedAddresses(data); })
       .catch(console.error);
@@ -149,7 +149,7 @@ const products = useMemo(() => {
     }
     setAddressLoading(true);
     try {
-      const res = await fetch("http://localhost:8080/address/add", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/address/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userEmail: user.email, ...newAddress })
@@ -195,7 +195,7 @@ const products = useMemo(() => {
     setAddressLoading(true);
     setAddressMsg("");
     try {
-      const res = await fetch(`http://localhost:8080/address/update/${addrId}`, {
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/address/update/${addrId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editForm)
@@ -216,7 +216,7 @@ const products = useMemo(() => {
   async function deleteAddress(addrId) {
     if (!window.confirm("Are you sure you want to delete this address?")) return;
     try {
-      const res = await fetch(`http://localhost:8080/address/delete/${addrId}`, { method: "DELETE" });
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/address/delete/${addrId}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete address");
       setSavedAddresses(prev => prev.filter(a => a.id !== addrId));
       if (editingAddress === addrId) setEditingAddress(null);
@@ -230,12 +230,12 @@ const products = useMemo(() => {
     const isIn = wishlist.includes(product.id);
     if (isIn) {
       // REMOVE
-      await fetch(`http://localhost:8080/wishlist/remove?userEmail=${user.email}&productId=${product.id}`, { method: "DELETE" });
+      await fetch(`https://fsad-farmconnect-backend-1.onrender.com/wishlist/remove?userEmail=${user.email}&productId=${product.id}`, { method: "DELETE" });
       setWishlist(w => w.filter(id => id !== product.id));
       setWishlistProducts(wp => wp.filter(p => p.id !== product.id));
     } else {
       // ADD
-      const res = await fetch("http://localhost:8080/wishlist/add", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/wishlist/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userEmail: user.email, productId: product.id })

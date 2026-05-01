@@ -102,7 +102,7 @@ export function CartProvider({ children }) {
       const user = JSON.parse(savedUser);
       if (!user.email) return;
 
-      const res = await fetch(`http://localhost:8080/cart/${user.email}`);
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/cart/${user.email}`);
       const data = await res.json();
       
       const mappedItems = data.map(item => ({
@@ -218,7 +218,7 @@ export function CartProvider({ children }) {
         quantity: qty
     };
 
-    fetch("http://localhost:8080/cart/add", {
+    fetch("https://fsad-farmconnect-backend-1.onrender.com/cart/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -243,7 +243,7 @@ export function CartProvider({ children }) {
     const itemToRemove = cart.items.find(i => i.id === productId || i.cartItemId === productId);
     if (!itemToRemove || !itemToRemove.cartItemId) return;
 
-    fetch(`http://localhost:8080/cart/remove/${itemToRemove.cartItemId}`, { method: "DELETE" })
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/cart/remove/${itemToRemove.cartItemId}`, { method: "DELETE" })
       .then(() => fetchCartFromDB())
       .catch(console.error);
   }, [cart.items, fetchCartFromDB]);
@@ -256,7 +256,7 @@ export function CartProvider({ children }) {
     const itemToUpdate = cart.items.find(i => i.id === productId || i.cartItemId === productId);
     if (!itemToUpdate || !itemToUpdate.cartItemId) return;
 
-    fetch(`http://localhost:8080/cart/update/${itemToUpdate.cartItemId}?quantity=${validQty}`, { method: "PUT" })
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/cart/update/${itemToUpdate.cartItemId}?quantity=${validQty}`, { method: "PUT" })
       .then(() => fetchCartFromDB())
       .catch(console.error);
   }, [cart.items, fetchCartFromDB]);
@@ -270,7 +270,7 @@ export function CartProvider({ children }) {
     const user = JSON.parse(savedUser);
 
     if (user.email) {
-      fetch(`http://localhost:8080/cart/${user.email}`, { method: "DELETE" })
+      fetch(`https://fsad-farmconnect-backend-1.onrender.com/cart/${user.email}`, { method: "DELETE" })
         .then(() => fetchCartFromDB())
         .catch(console.error);
     }

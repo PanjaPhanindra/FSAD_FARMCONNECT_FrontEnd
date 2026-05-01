@@ -90,7 +90,7 @@ export default function Login() {
 
   try {
     const res = await fetch(
-      `http://localhost:8080/auth/forgot-password?email=${form.email}`,
+      `https://fsad-farmconnect-backend-1.onrender.com/auth/forgot-password?email=${form.email}`,
       {
         method: "POST"
       }

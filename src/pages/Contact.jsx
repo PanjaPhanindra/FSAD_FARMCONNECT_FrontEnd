@@ -9,7 +9,7 @@ import AnimatedButton from "../components/AnimatedButton.jsx";
  *  Step 2 — Enter OTP → message saved to DB, confirmation email sent
  */
 
-const API = "http://localhost:8080";
+const API = "https://fsad-farmconnect-backend-1.onrender.com";
 
 const CONTACTS = [
   { label: "Support", value: "support@farmconnect.com", icon: "🛡️" },

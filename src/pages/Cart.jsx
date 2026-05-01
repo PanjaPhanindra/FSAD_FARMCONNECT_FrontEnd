@@ -64,7 +64,7 @@ export default function Cart() {
 
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:8080/address/${encodeURIComponent(user.email)}`)
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/address/${encodeURIComponent(user.email)}`)
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
@@ -257,7 +257,7 @@ export default function Cart() {
         }
       };
 
-      const res = await fetch("http://localhost:8080/orders/place", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/orders/place", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderPayload)

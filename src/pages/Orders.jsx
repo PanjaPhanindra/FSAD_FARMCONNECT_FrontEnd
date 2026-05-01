@@ -32,7 +32,7 @@ export default function Orders() {
   async function loadOrders() {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:8080/orders/buyer/${user.email}`);
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/orders/buyer/${user.email}`);
       if (!res.ok) throw new Error("Failed to load orders");
       const data = await res.json();
       setOrders(data);
@@ -52,7 +52,7 @@ export default function Orders() {
   async function handleCancel(orderId) {
     if (!window.confirm("Cancel this order? Stock will be restored.")) return;
     try {
-      const res = await fetch(`http://localhost:8080/orders/${orderId}/cancel`, { method: "PUT" });
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/orders/${orderId}/cancel`, { method: "PUT" });
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.message);
@@ -69,7 +69,7 @@ export default function Orders() {
     setRatingLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:8080/products/${ratingModal.item.productId}/rate?rating=${ratingValue}`,
+        `https://fsad-farmconnect-backend-1.onrender.com/products/${ratingModal.item.productId}/rate?rating=${ratingValue}`,
         { method: "POST" }
       );
       if (!res.ok) throw new Error("Failed to submit rating");

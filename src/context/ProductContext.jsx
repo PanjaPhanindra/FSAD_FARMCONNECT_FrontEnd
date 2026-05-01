@@ -8,7 +8,7 @@ export function ProductProvider({ children }) {
   // ✅ GET ALL PRODUCTS (Buyer)
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:8080/products");
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/products");
       const data = await res.json();
       setProducts(data || []);
     } catch (err) {
@@ -19,7 +19,7 @@ export function ProductProvider({ children }) {
   // ✅ GET PRODUCTS BY SELLER
   const getProductsBySeller = async (email) => {
     try {
-      const res = await fetch(`http://localhost:8080/products/seller/${email}`);
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/products/seller/${email}`);
       const data = await res.json();
       return data || [];
     } catch (err) {
@@ -31,7 +31,7 @@ export function ProductProvider({ children }) {
   // ✅ ADD PRODUCT
   const addProduct = async (product) => {
     try {
-      const res = await fetch("http://localhost:8080/products/add", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/products/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -62,7 +62,7 @@ export function ProductProvider({ children }) {
   // ✅ UPDATE PRODUCT (🔥 FIX FOR EDIT)
   const updateProduct = async (id, product) => {
     try {
-      const res = await fetch(`http://localhost:8080/products/${id}`, {
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -94,7 +94,7 @@ export function ProductProvider({ children }) {
   // ✅ DELETE PRODUCT
   const deleteProduct = async (id) => {
     try {
-      await fetch(`http://localhost:8080/products/${id}`, {
+      await fetch(`https://fsad-farmconnect-backend-1.onrender.com/products/${id}`, {
         method: "DELETE"
       });
       await fetchProducts(); // refresh

@@ -10,7 +10,7 @@ export default function ResetPassword() {
 
   async function handleReset() {
     const res = await fetch(
-      `http://localhost:8080/auth/reset-password?token=${token}&newPassword=${password}`,
+      `https://fsad-farmconnect-backend-1.onrender.com/auth/reset-password?token=${token}&newPassword=${password}`,
       { method: "POST" }
     );
 

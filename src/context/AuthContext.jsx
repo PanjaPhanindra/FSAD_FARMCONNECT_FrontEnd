@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
     setAuthError("");
 
     try {
-      const res = await fetch("http://localhost:8080/auth/login", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -70,7 +70,7 @@ export function AuthProvider({ children }) {
     setAuthError("");
 
     try {
-      const res = await fetch("http://localhost:8080/auth/register", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -110,7 +110,7 @@ export function AuthProvider({ children }) {
   // ✅ UPDATE PROFILE (name, avatarUrl)
   async function updateProfile(data) {
     try {
-      const res = await fetch("http://localhost:8080/users/update-profile", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/users/update-profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: user?.email, ...data })
@@ -132,7 +132,7 @@ export function AuthProvider({ children }) {
   // ✅ CHANGE PASSWORD — uses /auth/change-password
   async function changePassword(oldPassword, newPassword) {
     try {
-      const res = await fetch("http://localhost:8080/auth/change-password", {
+      const res = await fetch("https://fsad-farmconnect-backend-1.onrender.com/auth/change-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: user?.email, oldPassword, newPassword })
@@ -148,7 +148,7 @@ export function AuthProvider({ children }) {
   // ✅ DELETE ACCOUNT
   async function deleteAccount() {
     try {
-      const res = await fetch(`http://localhost:8080/users/delete/${user?.email}`, {
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/users/delete/${user?.email}`, {
         method: "DELETE"
       });
       if (!res.ok) throw new Error("Failed to delete account");

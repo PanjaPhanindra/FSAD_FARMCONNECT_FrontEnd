@@ -7,7 +7,7 @@ export default function Verify() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/auth/verify?code=${code}`)
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/auth/verify?code=${code}`)
       .then(() => {
         alert("Email verified successfully!");
         navigate("/login");

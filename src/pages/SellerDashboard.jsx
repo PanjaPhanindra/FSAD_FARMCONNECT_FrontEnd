@@ -53,7 +53,7 @@ const { getProductsBySeller, addProduct, deleteProduct, updateProduct } = usePro
 
   const loadOrders = () => {
     if (!user?.email) return;
-    fetch(`http://localhost:8080/orders/seller/${user.email}`)
+    fetch(`https://fsad-farmconnect-backend-1.onrender.com/orders/seller/${user.email}`)
       .then(r => r.json())
       .then(data => { if (Array.isArray(data)) setSellerOrders(data); })
       .catch(console.error);
@@ -62,7 +62,7 @@ const { getProductsBySeller, addProduct, deleteProduct, updateProduct } = usePro
   async function updateOrderStatus(orderId, newStatus) {
     setUpdatingOrderId(orderId);
     try {
-      const res = await fetch(`http://localhost:8080/orders/${orderId}/status?status=${newStatus}`, { method: "PUT" });
+      const res = await fetch(`https://fsad-farmconnect-backend-1.onrender.com/orders/${orderId}/status?status=${newStatus}`, { method: "PUT" });
       if (res.ok) loadOrders();
     } catch (e) { console.error(e); }
     setUpdatingOrderId(null);
